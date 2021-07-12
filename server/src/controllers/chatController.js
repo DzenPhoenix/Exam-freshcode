@@ -1,11 +1,9 @@
 const Conversation = require('../models/mongoModels/conversation');
 const Message = require('../models/mongoModels/Message');
 const Catalog = require('../models/mongoModels/Catalog');
-const moment = require('moment');
 const db = require('../models');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
-const _ = require('lodash');
 
 module.exports.addMessage = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
@@ -180,7 +178,7 @@ module.exports.getPreview = async (req, res, next) => {
   }
 };
 
-module.exports.blackList = async (req, res, next) => {
+module.exports.blackList = async (req, res) => {
   const predicate = 'blackList.' +
     req.body.participants.indexOf(req.tokenData.userId);
   try {
@@ -196,7 +194,7 @@ module.exports.blackList = async (req, res, next) => {
   }
 };
 
-module.exports.favoriteChat = async (req, res, next) => {
+module.exports.favoriteChat = async (req, res) => {
   const predicate = 'favoriteList.' +
     req.body.participants.indexOf(req.tokenData.userId);
   try {
