@@ -24,6 +24,7 @@ const SliderBar = (props) => {
         return style.exampleCarousel;
       case carouselConstants.FEEDBACK_SLIDER:
         return style.feedbackCarousel;
+      default: console.error("Unknow carouselType");
     }
   };
 
@@ -58,6 +59,7 @@ const SliderBar = (props) => {
           </div>
         ));
       }
+      default: console.error("Unknow carouselType")
     }
   };
   return (

@@ -102,6 +102,7 @@ const OptionalSelects = (props) => {
         </>
       );
     }
+    default: console.error("Unknow contest type");
   }
 };
 
