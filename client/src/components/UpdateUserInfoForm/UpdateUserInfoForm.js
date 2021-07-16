@@ -9,9 +9,8 @@ import Schems from '../../validators/validationSchems';
 import Error from '../Error/Error';
 
 const UpdateUserInfoForm = (props) => {
-  const {
-    onSubmit, submitting, error, clearUserError,
-  } = props;
+  const { onSubmit, submitting, error, clearUserError, } = props;
+
   return (
     <Formik onSubmit={onSubmit} initialValues={props.initialValues} validationSchema={Schems.UpdateUserSchema}>
       <Form className={styles.updateContainer}>
