@@ -8,12 +8,13 @@ import FormInput from '../FormInput/FormInput';
 import Schems from '../../validators/validationSchems';
 import Error from '../Error/Error';
 
+
 const UpdateUserInfoForm = (props) => {
   const { onSubmit, submitting, error, clearUserError, } = props;
 
   return (
-    <Formik onSubmit={onSubmit} initialValues={props.initialValues} validationSchema={Schems.UpdateUserSchema}>
-      <Form className={styles.updateContainer}>
+    <Formik onSubmit={(values) => { onSubmit(values) }} initialValues={props.initialValues} validationSchema={Schems.UpdateUserSchema}>
+      <Form className={styles.updateContainer} encType='multipart/form-data'>
         {error && <Error data={error.data} status={error.status} clearError={clearUserError} />}
         <div className={styles.container}>
           <span className={styles.label}>First Name</span>
@@ -59,6 +60,7 @@ const UpdateUserInfoForm = (props) => {
         </div>
         <ImageUpload
           name="file"
+          type="file"
           classes={{
             uploadContainer: styles.imageUploadContainer,
             inputContainer: styles.uploadInputContainer,
