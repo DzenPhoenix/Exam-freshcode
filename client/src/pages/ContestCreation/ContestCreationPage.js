@@ -55,7 +55,7 @@ const ContestCreationPage = (props) => {
         <div className={styles.lastContainer}>
           <div className={styles.buttonsContainer}>
             <BackButton />
-            <NextButton submit={submitForm} />
+            <NextButton submit={submitForm}/>
           </div>
         </div>
       </div>

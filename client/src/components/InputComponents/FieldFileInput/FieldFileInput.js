@@ -8,35 +8,43 @@ const FieldFileInput = ({ classes, ...rest }) => {
 
   return (
     <Field name={rest.name}>
-      {(props) => {
-        const {
-          field,
-        } = props;
+      {
+        (formik) => {
+          const field = formik.field;
+          const form = formik.form;
+          const setFieldValue = form.setFieldValue;
 
-        const getFileName = () => {
-          if (props.field.value) {
-            return props.field.value.name;
+          const getFileName = () => {
+            if (field.value) {
+              return field.value.name;
+            }
+            return '';
+          };
+
+          const onChange = (e) => {
+            const file = e.target.files[0];
+            setFieldValue("file", file);
           }
-          return '';
-        };
 
-        return (
-          <div className={fileUploadContainer}>
-            <label htmlFor="fileInput" className={labelClass}>
-              Choose file
-            </label>
-            <span id="fileNameContainer" className={fileNameClass}>
-              {getFileName()}
-            </span>
-            <input
-              {...field}
-              className={fileInput}
-              id="fileInput"
-              type="file"
-            />
-          </div>
-        );
-      }}
+          return (
+            <div className={fileUploadContainer}>
+              <label htmlFor="fileInput" className={labelClass}>
+                Choose file
+              </label>
+              <span id="fileNameContainer" className={fileNameClass}>
+                {getFileName()}
+              </span>
+              <input
+                name="file"
+                onChange={(e) => onChange(e)}
+                className={fileInput}
+                id="fileInput"
+                type="file"
+              />
+            </div>
+          );
+        }
+      }
     </Field>
   );
 };

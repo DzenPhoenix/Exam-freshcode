@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -40,26 +40,19 @@ class App extends Component {
           <Route exact path="/registration" component={OnlyNotAuthorizedUserHoc(RegistrationPage)} />
           <Route exact path="/payment" component={PrivateHoc(Payment)} />
           <Route exact path="/startContest" component={PrivateHoc(StartContestPage)} />
-          <Route
-            exact
-            path="/startContest/nameContest"
-            component={PrivateHoc(ContestCreationPage, {
+          <Route exact path="/startContest/nameContest" component={PrivateHoc(ContestCreationPage, {
               contestType: CONSTANTS.NAME_CONTEST,
               title: 'Company Name',
             })}
           />
           <Route
-            exact
-            path="/startContest/taglineContest"
-            component={PrivateHoc(ContestCreationPage, {
+            exact path="/startContest/taglineContest" component={PrivateHoc(ContestCreationPage, {
               contestType: CONSTANTS.TAGLINE_CONTEST,
               title: 'TAGLINE',
             })}
           />
           <Route
-            exact
-            path="/startContest/logoContest"
-            component={PrivateHoc(ContestCreationPage, {
+            exact path="/startContest/logoContest" component={PrivateHoc(ContestCreationPage, {
               contestType: CONSTANTS.LOGO_CONTEST,
               title: 'LOGO',
             })}

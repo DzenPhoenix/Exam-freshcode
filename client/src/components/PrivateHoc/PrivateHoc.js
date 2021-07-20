@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getUserAction } from '../../actions/actionCreator';
 import Spinner from '../Spinner/Spinner';
 
+
 const PrivateHoc = (Component, props) => {
   const mapStateToProps = (state) => state.userStore;
 

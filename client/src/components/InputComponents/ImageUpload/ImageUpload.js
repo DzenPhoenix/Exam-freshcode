@@ -5,10 +5,10 @@ import { Field, } from 'formik';
 //Formik does not work with files by default
 //thats why i use custom onChange whith setFieldValue instead of handleChange (on default case)
 
-const onChange = (e, setFieldValue) => {
+const onChange = (e, setFieldValue,name) => {
   const node = window.document.getElementById('imagePreview');
   const file = e.target.files[0];
-  setFieldValue("file", file);
+  setFieldValue(name, file);
   const imageType = /image.*/;
   if (!file.type.match(imageType)) {
     e.target.value = '';
@@ -40,8 +40,8 @@ const ImageUpload = (props) => {
                   id="fileInput"
                   type="file"
                   accept=".jpg, .png, .jpeg"
-                  name="file"
-                  onChange={(e) => onChange(e, setFieldValue)}
+                  name={props.name}
+                  onChange={(e) => onChange(e, setFieldValue,props.name)}
                 />
                 < label htmlFor="fileInput" > Chose file</label>
               </div>

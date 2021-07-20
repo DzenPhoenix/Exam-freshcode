@@ -8,12 +8,15 @@ import styles from './Dialog.module.sass';
 import ChatInput from '../../ChatComponents/ChatInut/ChatInput';
 
 class Dialog extends React.Component {
+  constructor(props){
+    super(props);
+    this.messagesEnd = React.createRef();
+  }
+
   componentDidMount() {
     this.props.getDialog({ interlocutorId: this.props.interlocutor.id });
     this.scrollToBottom();
   }
-
-    messagesEnd = React.createRef();
 
     scrollToBottom = () => {
       this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' });

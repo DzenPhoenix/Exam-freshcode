@@ -10,7 +10,6 @@ const SelectInput = ({
 }) => {
   const {
     form: { setFieldValue },
-    meta: { initialValue },
     field,
   } = props;
 
@@ -33,10 +32,10 @@ const SelectInput = ({
   };
 
   useLayoutEffect(() => {
-    if (!initialValue && optionsArray) {
+    if (valueArray && optionsArray.length>0) {
       setFieldValue(field.name, valueArray ? valueArray[0] : optionsArray[0]);
     }
-  },);
+  });
 
   return (
     <div className={classes.inputContainer}>
