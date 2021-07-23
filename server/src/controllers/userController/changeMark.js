@@ -4,12 +4,12 @@ const userQueries = require('../queries/userQueries.js');
 const ratingQueries = require('../queries/ratingQueries.js');
 
 const getQuery = (offerId, userId, mark, isFirst, transaction)=> {
-  const getCreateQuery = ratingQueries.createRating({
+  const getCreateQuery = ()=>ratingQueries.createRating({
     offerId,
     mark,
     userId }
   , transaction);
-  const getUpdateQuery = ratingQueries.updateRating({ mark },
+  const getUpdateQuery =()=> ratingQueries.updateRating({ mark },
     { offerId, userId }, transaction);
   return isFirst ? getCreateQuery : getUpdateQuery;
 };
