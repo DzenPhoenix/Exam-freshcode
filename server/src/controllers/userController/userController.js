@@ -1,10 +1,10 @@
 
-const login = require('./userControllerLogin.js');
-const registration = require('./userControllerRegistration.js');
-const changeMark = require('./userControllerChangeMark.js');
-const payment = require('./userControllerPayment.js');
-const updateUser = require('./userControllerUpdateUser.js');
-const cashout = require('./UserControllerCashOut.js');
+const login = require('./login.js');
+const registration = require('./registration.js');
+const changeMark = require('./changeMark.js');
+const payment = require('./payment.js');
+const updateUser = require('./updateUser.js');
+const cashout = require('./cashOut.js');
 
 module.exports = {
   login,
