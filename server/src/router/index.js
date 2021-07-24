@@ -1,12 +1,12 @@
 const express = require('express');
-const basicMiddlewares = require('../middlewares/basicMiddlewares');
-const hashPass = require('../middlewares/hashPassMiddle');
+const basicMiddlewares = require('../middlewares/basicMiddlewares.js');
+const hashPass = require('../middlewares/hashPassMiddle.js');
 const userController = require('../controllers/userController/userController.js');
 const contestController = require('../controllers/contestController/contestController.js');
-const checkToken = require('../middlewares/checkToken');
-const validators = require('../middlewares/validators');
+const checkToken = require('../middlewares/checkToken.js');
+const validators = require('../middlewares/validators.js');
 const chatController = require('../controllers/chatController/chatController.js');
-const upload = require('../utils/fileUpload');
+const upload = require('../utils/fileUpload.js');
 
 const router = express.Router();
 

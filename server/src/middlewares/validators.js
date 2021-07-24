@@ -1,9 +1,10 @@
 const schems = require('../validationSchemes/schems');
-const BadRequestError = require('../errors/BadRequestError');
+const errors = require('../errors/Errors.js');
 
 module.exports.validateRegistrationData = async (req, res, next) => {
   const validationResult = await schems.registrationSchem.isValid(req.body);
   if (!validationResult) {
+    const BadRequestError = errors.BadRequestError;
     return next(new BadRequestError('Invalid data for registration'));
   } else {
     next();
@@ -15,6 +16,7 @@ module.exports.validateLogin = async (req, res, next) => {
   if (validationResult) {
     next();
   } else {
+    const BadRequestError = errors.BadRequestError;
     return next(new BadRequestError('Invalid data for login'));
   }
 };
@@ -28,6 +30,7 @@ module.exports.validateContestCreation = (req, res, next) => {
     .then(results => {
       results.forEach(result => {
         if (!result) {
+          const BadRequestError = errors.BadRequestError;
           return next(new BadRequestError());
         }
       });

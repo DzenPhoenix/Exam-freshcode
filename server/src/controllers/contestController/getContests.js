@@ -1,5 +1,5 @@
 const db = require('../../models/index.js');
-const ServerError =require('../../errors/ServerError.js');
+const errors =require('../../errors/Errors.js');
 const UtilFunctions = require('../../utils/functions.js');
 
 const getContests = function(req, res, next){
@@ -29,6 +29,7 @@ const getContests = function(req, res, next){
       res.send({ contests, haveMore });
     })
     .catch(err => {
+      const ServerError = errors.ServerError;
       next(new ServerError(err));
     });
 };

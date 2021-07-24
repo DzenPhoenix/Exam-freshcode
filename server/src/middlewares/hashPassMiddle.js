@@ -1,5 +1,5 @@
 const CONSTANTS = require('../constants');
-const ServerError = require('../errors/ServerError');
+const errors = require('../errors/Errors.js');
 const bcrypt = require('bcrypt');
 
 module.exports = async (req, res, next) => {
@@ -7,6 +7,7 @@ module.exports = async (req, res, next) => {
     req.hashPass = await bcrypt.hash(req.body.password, CONSTANTS.SALT_ROUNDS);
     next();
   } catch (err) {
+    const ServerError = errors.ServerError;
     next(new ServerError('Server Error on hash password'));
   }
 };

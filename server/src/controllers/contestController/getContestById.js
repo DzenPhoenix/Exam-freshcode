@@ -1,5 +1,5 @@
 const db = require('../../models/index.js');
-const ServerError =require('../../errors/ServerError.js');
+const errors =require('../../errors/Errors.js');
 const CONSTANTS = require('../../constants.js');
 
 
@@ -62,6 +62,7 @@ const getContestById = async function(req, res, next){
     });
     res.send(contestInfo);
   } catch (e) {
+    const ServerError = errors.ServerError;
     next(new ServerError());
   }
 };

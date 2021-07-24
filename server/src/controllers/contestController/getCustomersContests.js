@@ -1,5 +1,5 @@
 const db = require('../../models/index.js');
-const ServerError =require('../../errors/ServerError.js');
+const errors =require('../../errors/Errors.js');
 
 const getCustomersContests = function(req, res, next){
   db.Contests.findAll({
@@ -24,7 +24,10 @@ const getCustomersContests = function(req, res, next){
       }
       res.send({ contests, haveMore });
     })
-    .catch(err => next(new ServerError(err)));
+    .catch(
+      (err) => {
+        const ServerError = errors.ServerError;
+        next(new ServerError(err)); });
 };
 
 module.exports=getCustomersContests;

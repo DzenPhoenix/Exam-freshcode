@@ -1,4 +1,4 @@
-const ServerError =require('../../errors/ServerError.js');
+const errors =require('../../errors/Errors.js');
 const contestQueries = require('../queries/contestQueries.js');
 const controller = require('../../socketInit.js');
 const CONSTANTS = require('../../constants.js');
@@ -22,6 +22,7 @@ const setNewOffer = async function(req, res, next){
     const User = Object.assign({}, req.tokenData, { id: req.tokenData.userId });
     res.send(Object.assign({}, result, { User }));
   } catch (e) {
+    const ServerError = errors.ServerError;
     return next(new ServerError());
   }
 };

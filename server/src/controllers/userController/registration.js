@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const CONSTANTS = require('../../constants.js');
-const NotUniqueEmailError = require('../../errors/NotUniqueEmailError.js');
+const errors = require('../../errors/Errors.js');
 const userQueries = require('../queries/userQueries.js');
 
 
@@ -23,6 +23,7 @@ const registration = async function (req, res, next){
     res.send({ token: accessToken });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
+      const NotUniqueEmailError = errors.NotUniqueEmailError;
       next(new NotUniqueEmailError());
     } else {
       next(err);

@@ -1,38 +1,50 @@
-const bd = require('../../models');
-const NotFound = require('../../errors/UserNotFoundError');
-const ServerError = require('../../errors/ServerError');
+const db = require('../../models/index.js');
+//const UserNotFoundError = require('../../errors/UserNotFoundError.js');
+//const ServerError = require('../../errors/ServerError.js');
+const errors=require('../../errors/Errors.js');
 const bcrypt = require('bcrypt');
 
-module.exports.updateUser = async (data, userId, transaction) => {
-  const [updatedCount, [updatedUser]] = await bd.Users.update(data,
+const updateUser = async function(data, userId, transaction){
+  const [updatedCount, [updatedUser]] = await db.Users.update(data,
     { where: { id: userId }, returning: true, transaction });
   if (updatedCount !== 1) {
+    const ServerError = errors.ServerError;
     throw new ServerError('cannot update user');
   }
   return updatedUser.dataValues;
 };
 
-module.exports.findUser = async (predicate, transaction) => {
-  const result = await bd.Users.findOne({ where: predicate, transaction });
+const findUser = async function(predicate, transaction){
+  const result = await db.Users.findOne({ where: predicate, transaction });
   if (!result) {
-    throw new NotFound('user with this data didn`t exist');
+    const UserNotFoundError = errors.UserNotFoundError;
+    throw new UserNotFoundError('user with this data didn`t exist');
   } else {
     return result.get({ plain: true });
   }
 };
 
-module.exports.userCreation = async (data) => {
-  const newUser = await bd.Users.create(data);
+const userCreation = async function(data){
+  const newUser = await db.Users.create(data);
   if (!newUser) {
+    const ServerError = errors.ServerError;
     throw new ServerError('server error on user creation');
   } else {
     return newUser.get({ plain: true });
   }
 };
 
-module.exports.passwordCompare = async (pass1, pass2) => {
+const passwordCompare = async function(pass1, pass2){
   const passwordCompare = await bcrypt.compare(pass1, pass2);
   if (!passwordCompare) {
-    throw new NotFound('Wrong password');
+    const UserNotFoundError = errors.UserNotFoundError;
+    throw new UserNotFoundError('Wrong password');
   }
+};
+
+module.exports={
+  updateUser,
+  findUser,
+  userCreation,
+  passwordCompare,
 };

@@ -1,5 +1,5 @@
 const db = require('../../models/index.js');
-const ServerError =require('../../errors/ServerError.js');
+const errors =require('../../errors/Errors.js');
 
 const dataForContest = async function(req, res, next){
   const response = {};
@@ -16,6 +16,7 @@ const dataForContest = async function(req, res, next){
       },
     });
     if (!characteristics) {
+      const ServerError = errors.ServerError;
       return next(new ServerError());
     }
     characteristics.forEach(characteristic => {
@@ -27,6 +28,7 @@ const dataForContest = async function(req, res, next){
     res.send(response);
   } catch (err) {
     console.log(err);
+    const ServerError = errors.ServerError;
     next(new ServerError('cannot get contest preferences'));
   }
 };
