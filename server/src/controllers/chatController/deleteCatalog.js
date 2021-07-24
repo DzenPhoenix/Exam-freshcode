@@ -1,4 +1,4 @@
-const Catalog = require('../../models/mongoModels/Catalog.js');
+const Catalog = require('../../db/mongo/models/Catalog.js');
 
 const deleteCatalog = async function(req, res, next){
   try {

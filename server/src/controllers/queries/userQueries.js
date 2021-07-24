@@ -1,6 +1,4 @@
-const db = require('../../models/index.js');
-//const UserNotFoundError = require('../../errors/UserNotFoundError.js');
-//const ServerError = require('../../errors/ServerError.js');
+const db = require('../../db/postgres/models/index.js');
 const errors=require('../../errors/Errors.js');
 const bcrypt = require('bcrypt');
 

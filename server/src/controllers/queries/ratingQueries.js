@@ -1,7 +1,8 @@
-const db = require('../../models');
+const db = require('../../db/postgres/models/index.js');
 const errors = require('../../errors/Errors.js');
 
 const updateRating = async function(data, predicate, transaction){
+  const ServerError=errors.ServerError;
   const [updatedCount, [updatedRating]] = await db.Ratings.update(data,
     { where: predicate, returning: true, transaction });
   if (updatedCount !== 1) {

@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
-require('./dbMongo/mongoose');
+require('./db/mongo/index.js');
 const router = require('./router');
 const controller = require('./socketInit');
 const handlerError = require('./middlewares/handleError.js');

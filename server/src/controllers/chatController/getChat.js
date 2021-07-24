@@ -1,4 +1,4 @@
-const Message = require('../../models/mongoModels/Message.js');
+const Message = require('../../db/mongo/models/Message.js');
 const userQueries = require('../queries/userQueries.js');
 
 const getChat = async function (req, res, next) {

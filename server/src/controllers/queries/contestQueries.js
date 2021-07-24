@@ -1,8 +1,8 @@
-const bd = require('../../models');
+const db = require('../../db/postgres/models/index.js');
 const errors = require('../../errors/Errors.js');
 
 const updateContest = async function(data, predicate, transaction){
-  const [updatedCount, [updatedContest]] = await bd.Contests.update(data,
+  const [updatedCount, [updatedContest]] = await db.Contests.update(data,
     { where: predicate, returning: true, transaction });
   if (updatedCount !== 1) {
     const ServerError = errors.ServerError;
@@ -13,7 +13,7 @@ const updateContest = async function(data, predicate, transaction){
 };
 
 const updateContestStatus = async function(data, predicate, transaction){
-  const updateResult = await bd.Contests.update(data,
+  const updateResult = await db.Contests.update(data,
     { where: predicate, returning: true, transaction });
   if (updateResult[ 0 ] < 1) {
     const ServerError = errors.ServerError;
@@ -24,7 +24,7 @@ const updateContestStatus = async function(data, predicate, transaction){
 };
 
 const updateOffer = async function(data, predicate, transaction){
-  const [updatedCount, [updatedOffer]] = await bd.Offers.update(data,
+  const [updatedCount, [updatedOffer]] = await db.Offers.update(data,
     { where: predicate, returning: true, transaction });
   if (updatedCount !== 1) {
     const ServerError = errors.ServerError;
@@ -35,7 +35,7 @@ const updateOffer = async function(data, predicate, transaction){
 };
 
 const updateOfferStatus = async function(data, predicate, transaction){
-  const result = await bd.Offers.update(data,
+  const result = await db.Offers.update(data,
     { where: predicate, returning: true, transaction });
   if (result[ 0 ] < 1) {
     const ServerError = errors.ServerError;
@@ -46,7 +46,7 @@ const updateOfferStatus = async function(data, predicate, transaction){
 };
 
 const createOffer = async function(data){
-  const result = await bd.Offers.create(data);
+  const result = await db.Offers.create(data);
   if (!result) {
     const ServerError = errors.ServerError;
     throw new ServerError('cannot create new Offer');

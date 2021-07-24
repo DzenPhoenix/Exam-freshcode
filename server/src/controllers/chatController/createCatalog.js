@@ -1,4 +1,4 @@
-const Catalog = require('../../models/mongoModels/Catalog.js');
+const Catalog = require('../../db/mongo/models/Catalog.js');
 
 const createCatalog = async function(req, res, next){
   console.log(req.body);

@@ -1,4 +1,4 @@
-const db = require('../../models/index.js');
+const db = require('../../db/postgres/models/index.js');
 const errors =require('../../errors/Errors.js');
 
 const getCustomersContests = function(req, res, next){

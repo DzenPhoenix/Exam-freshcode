@@ -1,5 +1,5 @@
 const CONSTANTS = require('../../constants.js');
-const db = require('../../models/index.js');
+const db = require('../../db/postgres/models/index.js');
 const moment = require('moment');
 const { v4: uuid } = require('uuid');
 const bankQueries = require('../queries/bankQueries.js');

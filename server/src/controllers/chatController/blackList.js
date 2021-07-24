@@ -1,4 +1,4 @@
-const Conversation = require('../../models/mongoModels/conversation.js');
+const Conversation = require('../../db/mongo/models/conversation.js');
 const controller = require('../../socketInit.js');
 
 const blackList = async function (req, res){

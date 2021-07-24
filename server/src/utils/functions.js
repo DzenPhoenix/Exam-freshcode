@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../db/postgres/models/index.js');
 const CONSTANTS = require('../constants');
 
 module.exports.createWhereForAllContests = (

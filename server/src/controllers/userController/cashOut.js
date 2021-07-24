@@ -1,5 +1,5 @@
 const CONSTANTS = require('../../constants.js');
-const db = require('../../models/index.js');
+const db = require('../../db/postgres/models/index.js');
 const userQueries = require('../queries/userQueries');
 const bankQueries = require('../queries/bankQueries');
 

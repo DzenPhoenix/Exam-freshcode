@@ -8,7 +8,7 @@ const upload = require('../utils/fileUpload.js');
 
 const userRouter = express.Router();
 
-userRouter.post(
+userRouter.get(
   '/getUser',
   checkToken.checkAuth,
 );

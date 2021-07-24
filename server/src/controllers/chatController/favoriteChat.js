@@ -1,4 +1,4 @@
-const Conversation = require('../../models/mongoModels/conversation.js');
+const Conversation = require('../../db/mongo/models/conversation.js');
 
 const favoriteChat = async function(req, res){
   const predicate = 'favoriteList.' +

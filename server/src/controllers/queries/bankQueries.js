@@ -1,4 +1,4 @@
-const bd = require('../../models');
+const bd = require('../../db/postgres/models/index.js');
 const errors = require('../../errors/Errors.js');
 
 module.exports.updateBankBalance = async function(data, predicate, transaction){

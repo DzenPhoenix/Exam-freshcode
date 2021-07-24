@@ -1,5 +1,5 @@
-const Message = require('../../models/mongoModels/Message');
-const db = require('../../models/index.js');
+const Message = require('../../db/mongo/models/Message.js');
+const db = require('../../db/postgres/models/index.js');
 
 const getPreview = async function (req, res, next){
   try {

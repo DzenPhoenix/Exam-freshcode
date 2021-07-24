@@ -1,5 +1,5 @@
-const Conversation = require('../../models/mongoModels/conversation.js');
-const Message = require('../../models/mongoModels/Message.js');
+const Conversation = require('../../db/mongo/models/conversation.js');
+const Message = require('../../db/mongo/models/Message.js');
 const controller = require('../../socketInit.js');
 
 const addMessage = async function (req, res, next){
