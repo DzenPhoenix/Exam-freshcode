@@ -1,12 +1,14 @@
 import { put } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
 import CONSTANTS from '../constants';
-import * as restController from '../api/rest/restController';
+import restController from '../api/rest/restController.js';
+
+const userController = restController.userController;
 
 export function* paymentSaga(action) {
   yield put({ type: ACTION.PAYMENT_ACTION_REQUEST });
   try {
-    yield restController.payMent(action.data);
+    yield userController.payment(action.data);
     action.history.replace('dashboard');
     yield put({ type: ACTION.CLEAR_CONTEST_STORE });
     yield put({ type: ACTION.CLEAR_PAYMENT_STORE });
@@ -18,7 +20,7 @@ export function* paymentSaga(action) {
 export function* cashoutSaga(action) {
   yield put({ type: ACTION.PAYMENT_ACTION_REQUEST, data: action.data });
   try {
-    const { data } = yield restController.cashOut(action.data);
+    const { data } = yield userController.cashOut(action.data);
     yield put({ type: ACTION.UPDATE_USER_DATA_SUCCESS, data });
     yield put({ type: ACTION.CLEAR_PAYMENT_STORE });
     yield put({ type: ACTION.CHANGE_PROFILE_MODE_VIEW, data: CONSTANTS.USER_INFO_MODE });

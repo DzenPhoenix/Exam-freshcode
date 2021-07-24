@@ -11,8 +11,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.use('/public', express.static('public'));
-app.use(router);
+app.use('/user', router.userRouter);
+app.use('/contest', router.contestRouter);
+app.use('/chat', router.chatRouter);
 
 app.use(handlerError);
 

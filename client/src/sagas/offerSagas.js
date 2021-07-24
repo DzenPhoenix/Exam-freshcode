@@ -1,11 +1,14 @@
 import { put, select } from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
-import * as restController from '../api/rest/restController';
 import CONSTANTS from '../constants';
+import restController from '../api/rest/restController.js';
+
+const userController = restController.userController;
+const contestController=restController.contestController;
 
 export function* changeMarkSaga(action) {
   try {
-    const { data } = yield restController.changeMark(action.data);
+    const { data } = yield userController.changeMark(action.data);
     const offers = yield select((state) => state.contestByIdStore.offers);
     offers.forEach((offer) => {
       if (offer.User.id === data.userId) {
@@ -23,7 +26,7 @@ export function* changeMarkSaga(action) {
 
 export function* addOfferSaga(action) {
   try {
-    const { data } = yield restController.setNewOffer(action.data);
+    const { data } = yield contestController.setNewOffer(action.data);
     const offers = yield select((state) => state.contestByIdStore.offers);
     offers.unshift(data);
     yield put({ type: ACTION.ADD_NEW_OFFER_TO_STORE, data: offers });
@@ -34,7 +37,7 @@ export function* addOfferSaga(action) {
 
 export function* setOfferStatusSaga(action) {
   try {
-    const { data } = yield restController.setOfferStatus(action.data);
+    const { data } = yield contestController.setOfferStatus(action.data);
     const offers = yield select((state) => state.contestByIdStore.offers);
     offers.forEach((offer) => {
       if (data.status === CONSTANTS.OFFER_STATUS_WON) {
