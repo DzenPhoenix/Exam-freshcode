@@ -1,7 +1,19 @@
-
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Contest = sequelize.define('Contests', {
+  class Contest extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      models['Contests'].belongsTo(models['Users'], { foreignKey: 'userId', sourceKey: 'id' });
+      models['Contests'].hasMany(models['Offers'], { foreignKey: 'contestId', targetKey: 'id' });
+    }
+  }
+  Contest.init({
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -84,10 +96,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
     },
-  },
-  {
+  }, {
+    sequelize,
+    modelName: 'Contests',
     timestamps: false,
   });
-
   return Contest;
 };

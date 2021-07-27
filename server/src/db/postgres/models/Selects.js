@@ -1,7 +1,16 @@
-
-
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  const SelectBox = sequelize.define('Selects', {
+  class Select extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate() {
+      // define association here
+    }
+  }
+  Select.init({
     type: {
       allowNull: false,
       primaryKey: true,
@@ -12,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.STRING,
     },
-  },
-  {
+  }, {
+    sequelize,
+    modelName: 'Selects',
     timestamps: false,
   });
-
-  return SelectBox;
+  return Select;
 };

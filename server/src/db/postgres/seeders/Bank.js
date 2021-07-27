@@ -24,5 +24,8 @@ module.exports = {
       },
     ], {});
   },
+  down: async (queryInterface) => {
+    await queryInterface.bulkDelete('Banks', null, {});
+  },
 
 };
