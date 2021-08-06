@@ -28,7 +28,8 @@ const launchAContest = {
             "of our branding consultants (a $99 value).By exploring our premium domain marketplace you can apply the contest"+
             "award towards the purchase of any name listed for sale.If you choose the Gold package or Platinum package and keep"+
             "the contest as 'Not Guaranteed', you can request a partial refund if you choose not to move forward with any name from"+
-            "you project. (Please note that the refund is for the contest award). Here is a link to our Refund Policy"
+            "you project. (Please note that the refund is for the contest award). Here is a link to our "+
+            "<a href='https://helpdesk.squadhelp.com/en/articles/115621-refund-policy'>Refund Policy</a>"
         },
         {
             header: "How much does it cost?",
@@ -55,8 +56,10 @@ const launchAContest = {
         {
             header: "Can I see any examples?",
             body: "Our creatives have submitted more than 6 Million names and thousands of logos on our platform."+
-            "Here are some examples of Names, Taglines, and Logos that were submitted in recent contests."+
-            "Name Examples,Tagline Examples,Logo Examples"
+            "Here are some examples of Names, Taglines, and Logos that were submitted in recent contests:"+
+            "<a href='https://www.google.com/'>Name Examples</a>,"+
+            "<a href='https://www.google.com/'>Tagline Examples</a>,"+
+            "<a href='https://www.google.com/'>Logo Examples</a>"
         },
     ]
 }

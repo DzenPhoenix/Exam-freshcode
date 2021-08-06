@@ -9,7 +9,6 @@ const ExpandedSection=(props)=>{
 
     const handleClick = ()=>{
         setExpanded(!isExpanded);
-        console.log(isExpanded);
     }
 
     return (
@@ -18,7 +17,7 @@ const ExpandedSection=(props)=>{
                 <div>{header}</div>
                 <img className={isExpanded? Style.verticalArrow:null} src="staticImages/howItworks/arrow.png" alt ="arrow" ></img>
             </div>   
-            <div className={isExpanded? Style.showBody:Style.hideBody}>{body}</div>
+            <div className={isExpanded? Style.showBody:Style.hideBody} dangerouslySetInnerHTML={{ __html: body }}></div>
         </div>
     )
 }
