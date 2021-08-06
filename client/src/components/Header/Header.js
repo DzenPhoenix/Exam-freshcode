@@ -22,6 +22,10 @@ class Header extends React.Component {
     this.props.history.push('/startContest');
   };
 
+  createEvent = () => {
+    this.props.history.push('/events');
+  };
+
   renderLoginButtons = () => {
     if (this.props.data) {
       return (
@@ -102,6 +106,8 @@ class Header extends React.Component {
             <img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt="blue_logo" />
           </a>
           <div className={styles.leftNav}>
+            {this.props.data && this.props.data.role !== CONSTANTS.CREATOR
+              && <div className={styles.startContestBtn} onClick={this.createEvent}>CREATE EVENT</div>}
             <div className={styles.nav}>
               <ul>
                 <li>
