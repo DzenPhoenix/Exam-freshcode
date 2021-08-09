@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 import { Formik, Field, Form } from "formik";
 import Style from "./InputEvent.module.sass";
 import moment from "moment";
@@ -9,23 +8,27 @@ const initialValues = {
   eventDate: moment().format("YYYY-MM-DD"),
   eventTime: moment().format("HH:mm"),
   eventRemindTime: moment().format("HH:mm"),
+  eventTimeCreating: moment().format("YYYY-MM-DD HH:mm"),
 };
 
-const handleClick = (values, email) => {
+const handleClick = (values, email,addEvent) => {
   const check = window.confirm("Create event?");
   if (check) {
     const eventListItem = localStorage.getItem("Event: " + email);
-    const eventList=eventListItem? JSON.parse(eventListItem):[];
-    eventList.push(JSON.stringify(values));
+    const eventList = eventListItem ? JSON.parse(eventListItem) : [];
+    eventList.push(values);
     localStorage.setItem("Event: " + email, JSON.stringify(eventList));
+    addEvent(values);
   }
-
 }
 
 const InputEvent = (props) => {
-  const data = props.data;
+
+  const addEvent = props.addEvent;
+  const email = props.email;
+
   return (
-    <Formik initialValues={initialValues} onSubmit={(values) => handleClick(values, data.email)}>
+    <Formik initialValues={initialValues} onSubmit={(values)=>{handleClick(values,email,addEvent)}}>
       <Form className={Style.inputEvent}>
         <h2>Creating event:</h2>
         <div>
@@ -50,11 +53,5 @@ const InputEvent = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const userStore = state.userStore;
-  const data = userStore.data;
-  return { data };
-};
 
-
-export default connect(mapStateToProps)(InputEvent);
+export default InputEvent;
