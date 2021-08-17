@@ -1,12 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
+const cron = require('node-cron');
+
 
 class Logger {
 
   constructor(dest=path.join(__dirname, '/logfiles/'), fileName= 'log.json'){
     this.dest = dest;
     this.fileName = fileName;
+    this.task=null;
   }
 
   errorParser(error){
@@ -73,6 +76,26 @@ class Logger {
     catch(e){
       this.console.error(e);
     }
+  }
+
+  runEveryDayAt(time){
+    const hour = time.split(':')[0];
+    const minutes = time.split(':')[1];
+    const croneTime = `00 ${minutes} ${hour} * * *`;
+    if(cron.validate(croneTime)){
+      this.task = cron.schedule(croneTime, ()=>{
+        this.copyAndClear(`log${moment().format('_YYYY_MM_DD')}.json`);
+      });
+    }
+    else{
+      const error = new Error('Task not running. Invalid cron time syntax');
+      this.file(error);
+      this.console(error);
+    }
+  }
+
+  stop(){
+    this.task.stop();
   }
 }
 

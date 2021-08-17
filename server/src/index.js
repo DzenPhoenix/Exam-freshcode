@@ -6,17 +6,10 @@ const router = require('./router');
 const controller = require('./socketInit');
 const handlerError = require('./middlewares/handleError.js');
 const Logger = require('./utils/logger.js');
-const moment = require('moment');
 
 const logger = new Logger();
-
-try{
-  throw new Error('Test error');
-}
-catch(err){
-  logger.file(err);
-  logger.copyAndClear(`log${moment().format('_YYYY_MM_DD')}`);
-}
+const SCHEDULE_TIME = '18:00';
+logger.runEveryDayAt(SCHEDULE_TIME);
 
 const PORT = process.env.PORT || 5000;
 const app = express();
