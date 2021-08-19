@@ -1,5 +1,14 @@
 import ACTION from './actionTypes';
 
+
+export const passwordActionRecover = (data, history) => (
+  {
+    type: ACTION.PASSWORD_ACTION_RECOVER,
+    data,
+    history,
+  }
+);
+
 export const authActionLogin = (data, history) => ({
   type: ACTION.AUTH_ACTION_LOGIN,
   data,

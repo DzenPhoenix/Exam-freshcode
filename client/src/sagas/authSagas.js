@@ -26,3 +26,7 @@ export function* registerSaga(action) {
     yield put({ type: ACTION.AUTH_ACTION_ERROR, error: e.response });
   }
 }
+
+export function* recoverSaga(action) {
+  yield userController.recoverRequest(action.data);
+}

@@ -27,6 +27,12 @@ userRouter.post(
 );
 
 userRouter.post(
+  '/recover',
+  validators.validateLogin,
+  userController.recoverPassword,
+);
+
+userRouter.post(
   '/pay',
   checkToken.checkToken,
   basicMiddlewares.onlyForCustomer,
