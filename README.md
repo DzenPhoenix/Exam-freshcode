@@ -1,7 +1,7 @@
 # Exam-freshcode
 
 Done:
-1.  Check project, pareticible refactor
+1. Check project, partial corrections
 2. FRONT
 3. REACT
 4. DB NO-SQL
