@@ -28,7 +28,7 @@ userRouter.post(
 
 userRouter.post(
   '/recover',
-  validators.validateLogin,
+  validators.validateRecover,
   userController.recoverPassword,
 );
 

@@ -5,7 +5,10 @@ import CONSTANTS from '../../constants';
 import { Link } from 'react-router-dom';
 import RecoverForm from './components/RecoverForm';
 
-const RecoverPasswordPage = (props) => (
+const RecoverPasswordPage = (props) => {
+  const token = props.location.search.split('=')[1];
+  
+  return (
     <div className={Styles.mainContainer}>
       <div className={Styles.recoverContainer}>
         <div className={Styles.headerloginPage}>
@@ -20,10 +23,10 @@ const RecoverPasswordPage = (props) => (
           </div>
         </div>
         <div className={Styles.loginFormContainer}>
-          <RecoverForm history={props.history} />
+          <RecoverForm token = {token} history={props.history} />
         </div>
       </div>
     </div>
-  );
+  );}
 
   export default RecoverPasswordPage;

@@ -21,6 +21,18 @@ module.exports.validateLogin = async (req, res, next) => {
   }
 };
 
+module.exports.validateRecover = async (req, res, next)=>{
+  const token = req.body.token;
+  const validationResult = await schems.loginSchem.isValid(req.body);
+
+  if (validationResult || token) {
+    next();
+  } else {
+    const BadRequestError = errors.BadRequestError;
+    return next(new BadRequestError('Invalid data for login'));
+  }
+};
+
 module.exports.validateContestCreation = (req, res, next) => {
   const promiseArray = [];
   req.body.contests.forEach(el => {

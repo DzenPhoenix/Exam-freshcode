@@ -8,8 +8,15 @@ import { passwordActionRecover} from '../../../actions/actionCreator.js';
 
 class RecoverForm extends React.Component {
 
+  componentDidMount(){
+    const token = this.props.token;
+    if(token){
+      this.props.passwordRecoverRequest({ data: {token:token}, history: this.props.history});
+    }
+  };
+
   clicked = (values) => {
-    this.props.passwordRecoverRequest({ data: values, history: this.props.history });
+    this.props.passwordRecoverRequest({ data: values, history: this.props.history});
   };
 
   render() {
