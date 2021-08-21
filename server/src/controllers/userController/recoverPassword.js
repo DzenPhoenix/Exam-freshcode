@@ -3,6 +3,7 @@ const CONSTANTS = require('../../constants.js');
 const userQueries = require('../queries/userQueries.js');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
+const credentials = require('../../../credentials/credentials.js');
 
 const recoverPassword = async function (req, res, next) {
   const token = req.body.token;
@@ -32,12 +33,12 @@ const recoverPassword = async function (req, res, next) {
         password: req.body.password,
       }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
       const transporter = nodemailer.createTransport({
-        host: 'smtp.ukr.net',
+        host: credentials.host,
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: 'SquadHelp@ukr.net',
-          pass: '2IfFobmS8is5NQrR',
+          user: credentials.email,
+          pass: credentials.password,
         },
       });
       const htmlBody = '<!DOCTYPE html>'+
