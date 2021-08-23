@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
               </button>
             </Form>
           </Formik>
-          <a href = './recoverPassword'>Recover your password</a>
+          <a href = './recoverPassword'>Forget password? Recover your password...</a>
         </div>
       );
     }

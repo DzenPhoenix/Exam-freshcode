@@ -34,7 +34,7 @@ const recoverPassword = async function (req, res, next) {
       }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
       const transporter = nodemailer.createTransport({
         host: credentials.host,
-        port: 465,
+        port: credentials.port,
         secure: true, // true for 465, false for other ports
         auth: {
           user: credentials.email,

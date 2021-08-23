@@ -31,7 +31,7 @@ import {
 function* rootSaga() {
   yield takeLatest(ACTION.AUTH_ACTION_REGISTER, registerSaga);
   yield takeLatest(ACTION.AUTH_ACTION_LOGIN, loginSaga);
-  yield takeLatest(ACTION.PASSWORD_ACTION_RECOVER, recoverSaga);
+  yield takeLatest(ACTION.PASSWORD_RECOVER_ACTION, recoverSaga);
   yield takeLatest(ACTION.PAYMENT_ACTION, paymentSaga);
   yield takeEvery(ACTION.GET_USER_ACTION, privateSaga);
   yield takeEvery(ACTION.GET_DATA_FOR_CONTEST_ACTION, dataForContestSaga);

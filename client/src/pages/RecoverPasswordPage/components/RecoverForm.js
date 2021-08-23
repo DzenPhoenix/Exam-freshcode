@@ -4,14 +4,20 @@ import Styles from './RecoverForm.module.sass';
 import FormInput from '../../../components/FormInput/FormInput.js';
 import Schems from '../../../validators/validationSchems.js';
 import { connect } from 'react-redux';
-import { passwordActionRecover} from '../../../actions/actionCreator.js';
+import { passwordActionRecover, passwordRecoverActionClear} from '../../../actions/actionCreator.js';
+import Error from '../../../components/Error/Error.js';
+
 
 class RecoverForm extends React.Component {
+
+  componentWillUnmount() {
+    this.props.passwordRecoverClear();
+  }
 
   componentDidMount(){
     const token = this.props.token;
     if(token){
-      this.props.passwordRecoverRequest({ data: {token:token}, history: this.props.history});
+      this.props.passwordRecoverRequest({ data: {token:token}, history: this.props.history.replace('/')});
     }
   };
 
@@ -20,6 +26,9 @@ class RecoverForm extends React.Component {
   };
 
   render() {
+    const { error, isFetching, isDone } = this.props.recoverPassword;
+    const { submitting, passwordRecoverClear } = this.props;
+
     const formInputClasses = {
       container: Styles.inputContainer,
       input: Styles.input,
@@ -30,6 +39,13 @@ class RecoverForm extends React.Component {
 
     return (
       <div className={Styles.recoverForm}>
+        {error && (
+          <Error
+            data={error.data}
+            status={error.status}
+            clearError={passwordRecoverClear}
+          />
+          )}
         <h2>RECOVER YOUR PASSWORD</h2>
         <Formik
           initialValues={{
@@ -55,10 +71,16 @@ class RecoverForm extends React.Component {
             />
             <button
               type="submit"
+              disabled={submitting}
               className={Styles.submitContainer}
             >
-              RECOVER
+              <span className={Styles.inscription}>
+                  {isFetching
+                    ? 'Submitting...'
+                    : 'RECOVER PASSWORD'}
+              </span>
             </button>
+            {isDone && (<p>Check your email for updating link...</p>)}
           </Form>
         </Formik>
       </div>
@@ -66,10 +88,16 @@ class RecoverForm extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const { recoverPassword } = state;
+  return { recoverPassword };
+};
+
 const mapDispatchToProps = (dispatch) => (
   {
     passwordRecoverRequest: ({ data, history }) => dispatch(passwordActionRecover(data, history)),
+    passwordRecoverClear: () => dispatch(passwordRecoverActionClear()),
   }
 );
 
-export default connect(null,mapDispatchToProps)(RecoverForm);
+export default connect(mapStateToProps,mapDispatchToProps)(RecoverForm);

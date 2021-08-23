@@ -3,7 +3,7 @@ import ACTION from './actionTypes';
 
 export const passwordActionRecover = (data, history) => (
   {
-    type: ACTION.PASSWORD_ACTION_RECOVER,
+    type: ACTION.PASSWORD_RECOVER_ACTION,
     data,
     history,
   }
@@ -300,4 +300,8 @@ export const clearChatError = () => ({
 export const changeModalShow = (data) => ({
   type: ACTION.CHANGE_SHOW_MODAL,
   data,
+});
+
+export const passwordRecoverActionClear = () => ({
+  type: ACTION.PASSWORD_RECOVER_ACTION_CLEAR,
 });

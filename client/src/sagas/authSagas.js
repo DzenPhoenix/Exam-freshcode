@@ -28,5 +28,12 @@ export function* registerSaga(action) {
 }
 
 export function* recoverSaga(action) {
-  yield userController.recoverRequest(action.data);
+  yield put({ type: ACTION.PASSWORD_RECOVER_ACTION_REQUEST });
+  try{
+    yield userController.recoverRequest(action.data);
+    yield put({ type: ACTION.PASSWORD_RECOVER_ACTION_SUCCESS });
+  }
+  catch(e){
+    yield put({ type: ACTION.PASSWORD_RECOVER_ACTION_ERROR, error: e.response });
+  }
 }
