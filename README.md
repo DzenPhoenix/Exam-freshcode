@@ -7,4 +7,5 @@ Done:
 4. DB NO-SQL
 5. DB SQL (corrections are possible)
 6. NODE JS
-7. FULLSTACK (p.1 in progress)
+7. FULLSTACK 
+8. FULLSTACK (p.2 in progress)
