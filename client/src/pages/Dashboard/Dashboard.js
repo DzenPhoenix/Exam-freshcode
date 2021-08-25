@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CONSTANTS from '../../constants';
 import CustomerDashboard from '../../components/CustomerDashboard/CustomerDashboard';
 import CreatorDashboard from '../../components/CreatorDashboard/CreatorDashboard';
+import ModeratorDashboard from '../../components/ModeratorDashboard/ModeratorDashboard.jsx';
 import Header from '../../components/Header/Header';
 
 const Dashboard = (props) => {
@@ -11,10 +12,12 @@ const Dashboard = (props) => {
     <div>
       <Header />
       {
-                role === CONSTANTS.CUSTOMER
-                  ? <CustomerDashboard history={history} match={props.match} />
-                  : <CreatorDashboard history={history} match={props.match} />
-            }
+        role === CONSTANTS.CUSTOMER
+          ? <CustomerDashboard history={history} match={props.match} />
+          :  role === CONSTANTS.CREATOR
+            ? <CreatorDashboard history={history} match={props.match} />
+            : <ModeratorDashboard history={history} match={props.match} />
+      }
     </div>
   );
 };

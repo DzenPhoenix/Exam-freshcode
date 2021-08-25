@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate() {
-      //User.hasMany dont need because previusly called Contests.belongsTo and other 
+      //User.hasMany dont need because previusly called Contests.belongsTo and other
       //https://stackoverflow.com/questions/45501856/associate-different-models-using-sequelize
     }
   }
@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'anon.png',
     },
     role: {
-      type: DataTypes.ENUM('customer', 'creator'),
+      type: DataTypes.ENUM('customer', 'creator', 'moderator'),
       allowNull: false,
     },
     balance: {
